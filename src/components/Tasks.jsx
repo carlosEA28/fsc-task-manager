@@ -41,7 +41,7 @@ const Tasks = () => {
   };
 
   return (
-    <div className="py-16 px-8 w-full">
+    <div className="py-16 px-8 w-full space-y-6">
       <div className="flex justify-between items-center w-full">
         <div>
           <span className=" text-xs font-semibold text-[#00ADB5]">
