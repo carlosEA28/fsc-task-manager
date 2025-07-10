@@ -1,20 +1,49 @@
+import CheckedIcon from "../assets/icons/checked.svg?react";
+import Loader from "../assets/icons/loaderCircle.svg?react";
+import TaskInfoIcon from "../assets/icons/taskInfo.svg?react";
+
 const TaskItem = ({ task }) => {
   const getStatusClasses = () => {
     if (task.status === "done") {
-      return "bg-[#00ADB51A] text-[#00ADB5]";
+      return "bg-[#00ADB5]/10 text-[#00ADB5]";
     }
-
     if (task.status === "in_progress") {
-      return "bg-[#FFAA041A] text-[#FFAA04]";
+      return "bg-[#FFAA04]/10 text-[#FFAA04]";
     }
     if (task.status === "not_started") {
-      return "bg-[#35383E0D] text-[#35383E]";
+      return "bg-[#35383E]/10 text-[#35383E]";
     }
   };
 
   return (
-    <div className={`px-4 py-3 flex gap-2 rounded-lg ${getStatusClasses()}`}>
-      {task.title}
+    <div
+      className={`flex items-center justify-between px-4 py-3  gap-2 rounded-lg ${getStatusClasses()}`}
+    >
+      <div className=" flex items-center gap-2">
+        <label
+          className={`relative flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg ${getStatusClasses()}`}
+        >
+          <input
+            type="checkbox"
+            checked={task.status === "done"}
+            className=" absolute h-full w-full cursor-pointer opacity-0"
+          />
+
+          {task.status === "done" && <CheckedIcon />}
+
+          {task.status === "in_progress" && (
+            <Loader className="animate-spin " />
+          )}
+        </label>
+
+        {task.title}
+      </div>
+
+      <div>
+        <a href="#" className="hover:opacity-75 transition">
+          <TaskInfoIcon />
+        </a>
+      </div>
     </div>
   );
 };
