@@ -1,4 +1,4 @@
-const Button = ({ children, variant = "primary" }) => {
+const Button = ({ children, variant = "primary", ...rest }) => {
   const getVarientClasses = () => {
     if (variant === "primary") {
       return "bg-[#00ADB5] text-white";
@@ -12,6 +12,7 @@ const Button = ({ children, variant = "primary" }) => {
   return (
     <button
       className={`flex items-center cursor-pointer hover:opacity-50 transition-opacity gap-2 font-semibold  rounded-md px-3 py-1 text-xs ${getVarientClasses()}`}
+      {...rest}
     >
       {children}
     </button>
@@ -19,3 +20,5 @@ const Button = ({ children, variant = "primary" }) => {
 };
 
 export default Button;
+
+// ...rest, pega todas as propriedades de uma tag html, e passa direto, fazendo ser mais reutilizavel
