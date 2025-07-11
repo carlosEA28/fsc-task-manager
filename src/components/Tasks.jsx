@@ -56,6 +56,10 @@ const Tasks = () => {
     toast.success("Tarefa deletada com sucesso");
   };
 
+  const handleDialogclose = () => {
+    setAddTaskDialogIsOpen(false);
+  };
+
   return (
     <div className="py-16 px-8 w-full space-y-6">
       <div className="flex justify-between items-center w-full">
@@ -67,7 +71,7 @@ const Tasks = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="secondary">
+          <Button variant="ghost">
             Limpar Tarefas
             <TrashIcon />
           </Button>
@@ -80,7 +84,10 @@ const Tasks = () => {
             <AddIcon />
           </Button>
 
-          <AddTaskDialog isOpen={addTaskDialogIsOpen} />
+          <AddTaskDialog
+            isOpen={addTaskDialogIsOpen}
+            handleDialogclose={handleDialogclose}
+          />
         </div>
       </div>
 
