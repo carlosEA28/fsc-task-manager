@@ -1,3 +1,5 @@
+import InputLabel from "./InputLabel";
+
 const Input = ({ lable, ...rest }) => {
   return (
     <div className="flex flex-col text-left space-y-1">
