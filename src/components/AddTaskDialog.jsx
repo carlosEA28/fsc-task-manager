@@ -2,31 +2,34 @@ import { createPortal } from "react-dom";
 import Input from "./Input";
 import Button from "./Button";
 import { CSSTransition } from "react-transition-group";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./AddTaskDialog.css";
 import TimeSelect from "./TimeSelect";
 import { v4 } from "uuid";
 
 const AddTaskDialog = ({ isOpen, handleDialogclose, handleSubmit }) => {
-  const [title, setTitle] = useState();
   const [time, setTime] = useState("morning");
-  const [description, setDescription] = useState();
   const [errors, setErrors] = useState([]);
 
   const nodeRef = React.useRef();
+  const titleRef = useRef();
+  const descriptionRef = useRef();
 
   useEffect(() => {
     if (!isOpen) {
-      setTitle("");
       setTime("morning");
-      setDescription("");
     }
   }, [isOpen]);
 
   const handleSaveClick = () => {
     const newErrors = [];
+    const title = titleRef.current.value;
+    const description = descriptionRef.current.value;
 
-    if (!title.trim()) {
+    console.log(titleRef.current.value);
+    console.log(descriptionRef.current.value);
+
+    if (!title) {
       newErrors.push({
         inputName: "title",
         message: "O título é obrigatório",
@@ -94,9 +97,8 @@ const AddTaskDialog = ({ isOpen, handleDialogclose, handleSubmit }) => {
               id="title"
               lable="Título"
               placeholder="Insira o título da tarefa"
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
               errorMessage={titleError?.message}
+              ref={titleRef}
             />
 
             <TimeSelect
@@ -109,9 +111,8 @@ const AddTaskDialog = ({ isOpen, handleDialogclose, handleSubmit }) => {
               id="description"
               lable="Descrição"
               placeholder="Descreva a tarefa"
-              value={description}
-              onChange={(event) => setDescription(event.target.value)}
               errorMessage={descriptionError?.message}
+              ref={descriptionRef}
             />
 
             <div className="flex gap-3">

@@ -1,6 +1,8 @@
+import { forwardRef } from "react";
 import InputLabel from "./InputLabel";
+import InputErrorMessage from "./InputErrorMessage";
 
-const Input = ({ lable, errorMessage, ...rest }) => {
+const Input = forwardRef(({ lable, errorMessage, ...rest }, ref) => {
   return (
     <div className="flex flex-col text-left space-y-1">
       <InputLabel htmlFor={rest.id}>{lable}</InputLabel>
@@ -8,14 +10,15 @@ const Input = ({ lable, errorMessage, ...rest }) => {
       <input
         type="text"
         className="px-4 py-3 border border-solid border-[#ECECEC] rounded-lg placeholder:text-[#9A9C9F] text-sm focus:outline-none focus:border-[#00ADB5] transition-colors"
+        ref={ref}
         {...rest}
       />
 
-      {errorMessage && (
-        <p className="text-xs text-red-500 text-left">{errorMessage}</p>
-      )}
+      {errorMessage && <InputErrorMessage>{errorMessage}</InputErrorMessage>}
     </div>
   );
-};
+});
+
+Input.displayName = "Input";
 
 export default Input;
