@@ -14,6 +14,10 @@ export const TimeSelect = (props) => {
         <option value="afternoon">Tarde</option>
         <option value="moon">Noite</option>
       </select>
+
+      {props.errorMessage && (
+        <p className="text-xs text-red-500 text-left">{props.errorMessage}</p>
+      )}
     </div>
   );
 };
