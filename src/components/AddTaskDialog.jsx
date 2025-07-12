@@ -47,9 +47,9 @@ const AddTaskDialog = ({ isOpen, handleDialogclose, handleSubmit }) => {
       }
     }
     console.log(newErrors);
+    setErrors(newErrors);
 
     if (newErrors.length > 0) {
-      setErrors(newErrors);
       return;
     }
 
@@ -99,11 +99,10 @@ const AddTaskDialog = ({ isOpen, handleDialogclose, handleSubmit }) => {
               errorMessage={titleError?.message}
             />
 
-            <TimeSel
-              ect
+            <TimeSelect
               value={time}
               onChange={(event) => setTime(event.target.value)}
-              errorMessage={timeError.message}
+              errorMessage={timeError?.message}
             />
 
             <Input
