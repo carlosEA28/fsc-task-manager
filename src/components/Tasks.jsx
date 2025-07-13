@@ -70,7 +70,18 @@ const Tasks = () => {
     setAddTaskDialogIsOpen(false);
   };
 
-  const handleAddTask = (task) => {
+  const handleAddTask = async (task) => {
+    const response = await fetch("http://localhost:3000/tasks", {
+      method: "POST",
+      body: JSON.stringify(task),
+    });
+
+    if (!response.ok) {
+      return toast.error(
+        "Erro ao adicionar a tarefa. Por Favor, tente novamente"
+      );
+    }
+
     setTasks([...tasks, task]);
     toast.success("Tarefa adicionada com sucesso");
   };
