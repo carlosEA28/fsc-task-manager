@@ -7,15 +7,25 @@ import {
   MoonIcon,
 } from "../assets/icons";
 import TaskSeparator from "./TasksSeparator";
-import { useState } from "react";
-import { TASKS } from "../constants/tasks";
+import { useEffect, useState } from "react";
 import TaskItem from "./TaskItem";
 import { toast } from "sonner";
 import AddTaskDialog from "./AddTaskDialog";
 
 const Tasks = () => {
-  const [tasks, setTasks] = useState(TASKS);
+  const [tasks, setTasks] = useState([]);
   const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const response = await fetch("http://localhost:3000/tasks");
+      const data = await response.json();
+
+      setTasks(data);
+    };
+
+    fetchTasks();
+  }, []);
 
   const morningTasks = tasks.filter((task) => task.time === "morning");
   const afternoonTasks = tasks.filter((task) => task.time === "afternoon");
@@ -64,6 +74,7 @@ const Tasks = () => {
     setTasks([...tasks, task]);
     toast.success("Tarefa adicionada com sucesso");
   };
+
   return (
     <div className="py-16 px-8 w-full space-y-6">
       <div className="flex justify-between items-center w-full">
