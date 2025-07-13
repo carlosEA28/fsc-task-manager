@@ -4,7 +4,7 @@ export const TASKS = [
     title: "Fazer café",
     description: "Preparar o café da manhã com pão e frutas",
     time: "morning",
-    status: "not_started",
+    status: "in_progress",
   },
   {
     id: 2,
