@@ -60,9 +60,18 @@ const Tasks = () => {
     setTasks(newTask);
   };
 
-  const handleTaskDeleteClick = (taskId) => {
-    const newTasks = tasks.filter((task) => task.id !== taskId);
-    setTasks(newTasks);
+  const handleTaskDeleteClick = async (taskId) => {
+    const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      return toast.error(
+        "Erro ao adicionar a tarefa. Por Favor, tente novamente"
+      );
+    }
+
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
     toast.success("Tarefa deletada com sucesso");
   };
 
