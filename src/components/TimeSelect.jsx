@@ -8,7 +8,7 @@ export const TimeSelect = (props) => {
 
       <select
         id="time"
-        className="px-4 py-3 border border-solid border-[#ECECEC] rounded-lg placeholder:text-[#9A9C9F] text-sm focus:outline-none focus:border-[#00ADB5] transition-colors"
+        className="px-4 py-3 border border-solid border-[#ECECEC] rounded-lg placeholder:text-brand-text-gray text-sm focus:outline-none focus:border-brand-primary transition-colors"
         {...props}
       >
         <option value="morning">Manhã</option>
