@@ -10,6 +10,7 @@ const InputLabel = (props) => {
 
 InputLabel.propTypes = {
   children: PropTypes.node.isRequired,
+  color: PropTypes.oneOf(["primary", "ghost", "secondary"]),
 };
 
 export default InputLabel;
