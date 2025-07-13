@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./AddTaskDialog.css";
 import TimeSelect from "./TimeSelect";
 import { v4 } from "uuid";
+import PropTypes from "prop-types";
 
 const AddTaskDialog = ({ isOpen, handleDialogclose, handleSubmit }) => {
   const [time, setTime] = useState("morning");
@@ -139,8 +140,15 @@ const AddTaskDialog = ({ isOpen, handleDialogclose, handleSubmit }) => {
         </div>
       </div>
     </CSSTransition>,
+
     document.body
   );
+};
+
+AddTaskDialog.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  handleDialogclose: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default AddTaskDialog;
