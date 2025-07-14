@@ -8,6 +8,8 @@ import HomeIcon from "./home.svg?react";
 import CheckedIcon from "./checked.svg?react";
 import Loader from "./loaderCircle.svg?react";
 import TaskInfoIcon from "./taskInfo.svg?react";
+import RightArrowIcon from "./rightArrow.svg?react";
+import LeftArrorBtnIcon from "./arrow-left-btn.svg?react";
 
 export {
   AddIcon,
@@ -20,4 +22,6 @@ export {
   CheckedIcon,
   Loader,
   TaskInfoIcon,
+  RightArrowIcon,
+  LeftArrorBtnIcon,
 };
