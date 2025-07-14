@@ -1,8 +1,30 @@
 import PropTypes from "prop-types";
 import { TrashIcon, Loader, TaskInfoIcon, CheckedIcon } from "../assets/icons";
 import Button from "./Button";
+import { useState } from "react";
+import { toast } from "sonner";
 
-const TaskItem = ({ task, handleTaskCheckboxClick, handleTaskDeleteClick }) => {
+const TaskItem = ({ task, handleTaskCheckboxClick, onDeleteSuccess }) => {
+  const [deleteIsLoading, setDeleteIsLoading] = useState(false);
+
+  const handleDeleteClick = async () => {
+    setDeleteIsLoading(true);
+    const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      setDeleteIsLoading(false);
+
+      return toast.error(
+        "Erro ao adicionar a tarefa. Por Favor, tente novamente"
+      );
+    }
+
+    onDeleteSuccess(task.id);
+    setDeleteIsLoading(false);
+  };
+
   const getStatusClasses = () => {
     if (task.status === "done") {
       return "bg-brand-primary/10 text-brand-primary";
@@ -45,9 +67,14 @@ const TaskItem = ({ task, handleTaskCheckboxClick, handleTaskDeleteClick }) => {
       <div className="flex gap-2">
         <Button
           color="secondary"
-          onClick={() => handleTaskDeleteClick(task.id)}
+          onClick={handleDeleteClick}
+          disabled={deleteIsLoading}
         >
-          <TrashIcon className="text-brand-text-gray" />
+          {deleteIsLoading ? (
+            <Loader className="animate-spin " />
+          ) : (
+            <TrashIcon className="text-brand-text-gray" />
+          )}
         </Button>
 
         <div>
