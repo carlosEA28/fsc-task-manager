@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-router/node": "^7.6.3",
+    "@react-router/serve": "^7.6.3",
+    "isbot": "^5.1.28",
     "json-server": "^1.0.0-beta.3",
     "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router": "^7.6.3",
     "react-transition-group": "^4.4.5",
     "sonner": "^2.0.6",
     "tailwind-variants": "^1.0.0",
@@ -21,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
+    "@react-router/dev": "^7.6.3",
     "@tailwindcss/vite": "^4.1.11",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
@@ -31,7 +36,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.3.0",
     "tailwindcss": "^4.1.11",
-    "vite": "^7.0.3",
+    "vite": "^7.0.4",
     "vite-plugin-svgr": "^4.3.0"
   }
 }
