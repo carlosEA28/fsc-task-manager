@@ -15,7 +15,6 @@ import AddTaskDialog from "./AddTaskDialog";
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
   const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false);
-  // const [deleteTaskIsLoading, setDeleteTaskIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchTasks = async () => {
