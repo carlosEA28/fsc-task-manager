@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import SideBar from "../components/SideBar";
@@ -5,6 +6,7 @@ import { RightArrowIcon, LeftArrorBtnIcon, TrashIcon } from "../assets/icons";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import TimeSelect from "../components/TimeSelect";
+import { toast } from "sonner";
 
 const TaskDetailsPage = () => {
   const { taskId } = useParams();
@@ -76,6 +78,20 @@ const TaskDetailsPage = () => {
     setSaveIsLoading(false);
   };
 
+  const handleDeleteClick = async () => {
+    const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      return toast.error("Ocorreu um erro ao deletar a tarefa");
+    }
+
+    toast.success("Tarefa deletada com sucesso!");
+
+    navigate(-1);
+  };
+
   const titleError = errors.find((error) => error.inputName === "title");
   const timeError = errors.find((error) => error.inputName === "time");
   const descriptionError = errors.find(
@@ -127,7 +143,7 @@ const TaskDetailsPage = () => {
           {/* parte da direita */}
           <div className="flex flex-col justify-end h-full">
             <Button className="self-end" color="danger">
-              <TrashIcon />
+              <TrashIcon onClick={handleDeleteClick} />
               Deletar Tarefa
             </Button>
           </div>
