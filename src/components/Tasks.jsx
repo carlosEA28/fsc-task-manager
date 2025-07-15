@@ -109,7 +109,7 @@ const Tasks = () => {
           <AddTaskDialog
             isOpen={addTaskDialogIsOpen}
             handleDialogclose={handleDialogclose}
-            handleSubmit={handleAddTask}
+            handleOnSubmit={handleAddTask}
           />
         </div>
       </div>

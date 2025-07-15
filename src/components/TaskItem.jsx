@@ -98,7 +98,7 @@ TaskItem.propTypes = {
   }).isRequired,
 
   handleTaskCheckboxClick: PropTypes.func.isRequired,
-  handleTaskDeleteClick: PropTypes.func.isRequired,
+  onDeleteSuccess: PropTypes.func.isRequired,
 };
 
 export default TaskItem;
